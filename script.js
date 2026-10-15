@@ -1,103 +1,350 @@
-(() => {
-  'use strict';
-  const translations = {
-    en: {
-      pageTitle: 'Abdulaziz Saad | Personal Website',
-      pageDescription: 'The personal website of Abdulaziz Saad. A brief introduction and contact information.',
-      navigation: 'Primary navigation',
-      navAbout: 'About', navContact: 'Contact',
-      eyebrow: 'PERSONAL WEBSITE',
-      name: 'Abdulaziz<br>Saad<span class="period">.</span>',
-      heroIntro: 'A brief introduction and a simple way to stay in touch.',
-      readMore: 'A little about me',
-      portraitAlt: 'Portrait placeholder for Abdulaziz Saad. Replace this image with a personal photograph.',
-      portraitCaption: 'ABDULAZIZ SAAD', portraitSite: 'PERSONAL SITE',
-      aboutLabel: 'ABOUT', aboutHeading: 'A little about me<span class="gold-period">.</span>',
-      aboutText: 'My professional background is in digital transformation and project management. My interests also extend to business development, marketing analysis, and approaches that support sustainable growth.',
-      contactLabel: 'CONTACT', contactHeading: 'Get in touch<span class="gold-period">.</span>',
-      contactText: 'For professional correspondence or general inquiries, you can reach me directly by email.',
-      emailLabel: 'EMAIL ADDRESS', copyEmail: 'Copy', copiedEmail: 'Copied', copiedStatus: 'Email address copied.',
-      sendEmail: 'Send email', footerName: 'Abdulaziz Saad', footerText: 'Personal website · Azizsaad.com'
-    },
-    ar: {
-      pageTitle: 'عبدالعزيز سعد | الموقع الشخصي',
-      pageDescription: 'الموقع الشخصي لعبدالعزيز سعد، ويضم نبذة مختصرة وبيانات التواصل.',
-      navigation: 'التنقل الرئيسي',
-      navAbout: 'نبذة عني', navContact: 'التواصل',
-      eyebrow: 'الموقع الشخصي',
-      name: 'عبدالعزيز سعد<span class="period">.</span>',
-      heroIntro: 'نبذة مختصرة ووسيلة سهلة للتواصل.',
-      readMore: 'تعرّف عليّ',
-      portraitAlt: 'صورة رمزية مؤقتة لعبدالعزيز سعد، تُستبدل بالصورة الشخصية.',
-      portraitCaption: 'عبدالعزيز سعد', portraitSite: 'الموقع الشخصي',
-      aboutLabel: 'نبذة عني', aboutHeading: 'نبذة عني<span class="gold-period">.</span>',
-      aboutText: 'تتمحور خلفيتي المهنية حول التحول الرقمي وإدارة المشاريع. وتمتد اهتماماتي إلى تطوير الأعمال والتحليل التسويقي، والأساليب التي تدعم النمو المستدام.',
-      contactLabel: 'التواصل', contactHeading: 'للتواصل<span class="gold-period">.</span>',
-      contactText: 'للمراسلات المهنية أو الاستفسارات العامة، يمكنكم التواصل معي مباشرة عبر البريد الإلكتروني.',
-      emailLabel: 'البريد الإلكتروني', copyEmail: 'نسخ', copiedEmail: 'تم النسخ', copiedStatus: 'تم نسخ عنوان البريد الإلكتروني.',
-      sendEmail: 'إرسال بريد', footerName: 'عبدالعزيز سعد', footerText: 'الموقع الشخصي · Azizsaad.com'
-    }
-  };
-  const elements = [...document.querySelectorAll('[data-i18n]')];
-  const langButtons = [...document.querySelectorAll('[data-language]')];
-  const copyButton = document.getElementById('copy-email');
-  const status = document.getElementById('copy-status');
-  let lang = 'en';
 
-  function applyLanguage(next, updateUrl = true) {
-    if (!translations[next]) return;
-    lang = next;
-    const copy = translations[next];
-    document.documentElement.lang = next;
-    document.documentElement.dir = next === 'ar' ? 'rtl' : 'ltr';
-    document.title = copy.pageTitle;
-    document.querySelector('meta[name="description"]').content = copy.pageDescription;
-    document.querySelector('meta[property="og:title"]').content = copy.pageTitle;
-    document.querySelector('meta[property="og:description"]').content = copy.pageDescription;
-    document.querySelector('.main-nav').setAttribute('aria-label', copy.navigation);
-    for (const element of elements) {
-      const key = element.dataset.i18n;
-      if (key === 'name' || key === 'aboutHeading' || key === 'contactHeading') {
-        element.innerHTML = copy[key]; // Only trusted, fixed strings from this local file.
-      } else {
-        element.textContent = copy[key];
-      }
-    }
-    for (const element of document.querySelectorAll('[data-alt-key]')) {
-      element.alt = copy[element.dataset.altKey];
-    }
-    for (const element of document.querySelectorAll('[data-title-key]')) {
-      element.title = copy[element.dataset.titleKey];
-    }
-    for (const button of langButtons) {
-      const active = button.dataset.language === next;
-      button.classList.toggle('is-active', active);
-      button.setAttribute('aria-pressed', String(active));
-    }
-    status.textContent = '';
-    if (updateUrl) {
-      const url = new URL(window.location.href);
-      if (next === 'ar') url.searchParams.set('lang', 'ar');
-      else url.searchParams.delete('lang');
-      window.history.replaceState(null, '', url.toString());
-    }
+'use strict';
+
+const translations = {
+  en: {
+    brandHome: 'Azizsaad.com — home',
+    navigation: 'Primary navigation',
+
+    navAbout: 'About',
+    navContact: 'Contact',
+
+    eyebrow: 'PERSONAL WEBSITE',
+
+    firstName: 'Abdulaziz',
+    lastName: 'Saad',
+
+    heroIntro: 'Business & Technology',
+    readMore: 'About me',
+
+    portraitAlt: 'Portrait image',
+    portraitCaption: 'ABDULAZIZ SAAD',
+    portraitSite: 'PERSONAL SITE',
+
+    aboutLabel: 'ABOUT',
+    aboutHeading: 'About me',
+
+    aboutText:
+      'My background is in digital transformation and project management, with broader interests in business development, strategic partnerships, and investment opportunities.',
+
+    contactLabel: 'CONTACT',
+    contactHeading: 'Get in touch',
+
+    contactText:
+      'For professional inquiries and opportunities:',
+
+    emailLabel: 'EMAIL ADDRESS',
+
+    copyEmail: 'Copy',
+    copyEmailTitle: 'Copy email address',
+    copied: 'Copied!',
+
+    copySuccess:
+      'Email address copied to clipboard.',
+
+    copyError:
+      'Unable to copy automatically. You can select the email address above.',
+
+    sendEmail: 'Send email',
+
+    linkedin: 'LinkedIn',
+
+    linkedinAria:
+      'Abdulaziz Saad on LinkedIn (opens in a new tab)',
+
+    footerName: 'Abdulaziz Saad',
+    footerTagline: 'Business & Technology',
+
+    pageTitle:
+      'Abdulaziz Saad | Business & Technology',
+
+    description:
+      'Abdulaziz Saad — Business & Technology. Digital transformation, project management, business development, strategic partnerships, and investment opportunities.',
+
+    ogDescription:
+      'Digital transformation and project management, with interests in business development, strategic partnerships, and investment opportunities.'
+  },
+
+  ar: {
+    brandHome: 'عبدالعزيز سعد — الصفحة الرئيسية',
+    navigation: 'التنقل الرئيسي',
+
+    navAbout: 'نبذة عني',
+    navContact: 'التواصل',
+
+    eyebrow: 'الموقع الشخصي',
+
+    firstName: 'عبدالعزيز',
+    lastName: 'سعد',
+
+    heroIntro: 'الأعمال والتقنية',
+    readMore: 'المزيد عني',
+
+    portraitAlt: 'صورة شخصية',
+    portraitCaption: 'عبدالعزيز سعد',
+    portraitSite: 'موقع شخصي',
+
+    aboutLabel: 'نبذة عني',
+    aboutHeading: 'نبذة عني',
+
+    aboutText:
+      'تمتد خبرتي المهنية في مجالي التحول الرقمي وإدارة المشاريع، مع اهتمامات أوسع في تطوير الأعمال، والشراكات الاستراتيجية، والفرص الاستثمارية.',
+
+    contactLabel: 'التواصل',
+    contactHeading: 'تواصل معي',
+
+    contactText:
+      'للتواصل المهني وفرص التعاون:',
+
+    emailLabel: 'البريد الإلكتروني',
+
+    copyEmail: 'نسخ',
+    copyEmailTitle: 'نسخ البريد الإلكتروني',
+    copied: 'تم النسخ!',
+
+    copySuccess:
+      'تم نسخ البريد الإلكتروني.',
+
+    copyError:
+      'تعذر النسخ تلقائيًا. يمكنك تحديد عنوان البريد الإلكتروني أعلاه ونسخه.',
+
+    sendEmail: 'إرسال بريد',
+
+    linkedin: 'لينكدإن',
+
+    linkedinAria:
+      'صفحة عبدالعزيز سعد على لينكدإن (تفتح في تبويب جديد)',
+
+    footerName: 'عبدالعزيز سعد',
+    footerTagline: 'الأعمال والتقنية',
+
+    pageTitle:
+      'عبدالعزيز سعد | الأعمال والتقنية',
+
+    description:
+      'الموقع الشخصي لعبدالعزيز سعد. التحول الرقمي وإدارة المشاريع وتطوير الأعمال والشراكات الاستراتيجية والفرص الاستثمارية.',
+
+    ogDescription:
+      'خبرة مهنية في التحول الرقمي وإدارة المشاريع، واهتمام بتطوير الأعمال والشراكات الاستراتيجية والفرص الاستثمارية.'
   }
-  for (const button of langButtons) {
-    button.addEventListener('click', () => applyLanguage(button.dataset.language));
-  }
-  copyButton.addEventListener('click', async () => {
-    try {
-      await navigator.clipboard.writeText('a@azizsaad.com');
-      status.textContent = translations[lang].copiedStatus;
-      const buttonLabel = copyButton.querySelector('[data-i18n="copyEmail"]');
-      buttonLabel.textContent = translations[lang].copiedEmail;
-      window.setTimeout(() => { buttonLabel.textContent = translations[lang].copyEmail; }, 1600);
-    } catch (_error) {
-      // Clipboard access can be blocked on non-HTTPS origins. The email link still works.
-      status.textContent = lang === 'ar' ? 'حدّد عنوان البريد الإلكتروني لنسخه.' : 'Select the email address to copy it.';
+};
+
+
+// -----------------------------------
+// LANGUAGE SWITCHING
+// -----------------------------------
+
+let currentLanguage = 'en';
+let copyFeedbackTimeout;
+
+function updateLanguage(language) {
+  currentLanguage = language === 'ar' ? 'ar' : 'en';
+
+  const t = translations[currentLanguage];
+
+  // Language and text direction
+  document.documentElement.lang = currentLanguage;
+  document.documentElement.dir =
+    currentLanguage === 'ar' ? 'rtl' : 'ltr';
+
+  // Translate all visible elements
+  document.querySelectorAll('[data-i18n]').forEach(element => {
+    const value = t[element.dataset.i18n];
+
+    if (value !== undefined) {
+      element.textContent = value;
     }
   });
-  document.getElementById('year').textContent = String(new Date().getFullYear());
-  const requestedLang = new URL(window.location.href).searchParams.get('lang');
-  applyLanguage(requestedLang === 'ar' ? 'ar' : 'en', false);
-})();
+
+  // Translate accessibility labels
+  document.querySelectorAll('[data-aria-key]').forEach(element => {
+    const value = t[element.dataset.ariaKey];
+
+    if (value !== undefined) {
+      element.setAttribute('aria-label', value);
+    }
+  });
+
+  // Translate image descriptions
+  document.querySelectorAll('[data-alt-key]').forEach(element => {
+    const value = t[element.dataset.altKey];
+
+    if (value !== undefined) {
+      element.alt = value;
+    }
+  });
+
+  // Translate button tooltips
+  document.querySelectorAll('[data-title-key]').forEach(element => {
+    const value = t[element.dataset.titleKey];
+
+    if (value !== undefined) {
+      element.title = value;
+    }
+  });
+
+  // Update active language buttons
+  document.querySelectorAll('[data-language]').forEach(button => {
+    const active =
+      button.dataset.language === currentLanguage;
+
+    button.classList.toggle('is-active', active);
+    button.setAttribute('aria-pressed', String(active));
+  });
+
+  // Update page title and descriptions
+  document.title = t.pageTitle;
+
+  const description = document.querySelector(
+    'meta[name="description"]'
+  );
+
+  const ogTitle = document.querySelector(
+    'meta[property="og:title"]'
+  );
+
+  const ogDescription = document.querySelector(
+    'meta[property="og:description"]'
+  );
+
+  if (description) {
+    description.content = t.description;
+  }
+
+  if (ogTitle) {
+    ogTitle.content = t.pageTitle;
+  }
+
+  if (ogDescription) {
+    ogDescription.content = t.ogDescription;
+  }
+
+  // Clear old copy notifications
+  const status = document.getElementById('copy-status');
+
+  if (status) {
+    status.textContent = '';
+  }
+
+  if (copyFeedbackTimeout) {
+    clearTimeout(copyFeedbackTimeout);
+  }
+
+  // Remember selected language
+  try {
+    localStorage.setItem(
+      'preferredLanguage',
+      currentLanguage
+    );
+  } catch (_) {
+    // Storage may be unavailable.
+  }
+}
+
+
+// -----------------------------------
+// COPY EMAIL
+// -----------------------------------
+
+async function copyEmail() {
+  const email = 'a@azizsaad.com';
+
+  const status = document.getElementById('copy-status');
+
+  const label = document.querySelector(
+    '#copy-email [data-i18n="copyEmail"]'
+  );
+
+  const t = translations[currentLanguage];
+
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(email);
+
+    } else {
+      // Fallback for browsers without Clipboard API
+      const temporary = document.createElement('textarea');
+
+      temporary.value = email;
+      temporary.setAttribute('readonly', '');
+
+      temporary.style.position = 'fixed';
+      temporary.style.opacity = '0';
+
+      document.body.appendChild(temporary);
+      temporary.select();
+
+      const copied = document.execCommand('copy');
+
+      temporary.remove();
+
+      if (!copied) {
+        throw new Error('Copy command failed');
+      }
+    }
+
+    if (status) {
+      status.textContent = t.copySuccess;
+    }
+
+    if (label) {
+      label.textContent = t.copied;
+    }
+
+  } catch (_) {
+    if (status) {
+      status.textContent = t.copyError;
+    }
+  }
+
+  if (copyFeedbackTimeout) {
+    clearTimeout(copyFeedbackTimeout);
+  }
+
+  copyFeedbackTimeout = setTimeout(() => {
+    if (label) {
+      label.textContent =
+        translations[currentLanguage].copyEmail;
+    }
+  }, 2000);
+}
+
+
+// -----------------------------------
+// EVENT LISTENERS
+// -----------------------------------
+
+// English / Arabic buttons
+document.querySelectorAll('[data-language]').forEach(button => {
+  button.addEventListener('click', () => {
+    updateLanguage(button.dataset.language);
+  });
+});
+
+// Copy email button
+document
+  .getElementById('copy-email')
+  ?.addEventListener('click', copyEmail);
+
+// Dynamic footer year
+const yearElement = document.getElementById('year');
+
+if (yearElement) {
+  yearElement.textContent = String(new Date().getFullYear());
+}
+
+
+// -----------------------------------
+// INITIAL LANGUAGE
+// -----------------------------------
+
+let initialLanguage = 'en';
+
+try {
+  initialLanguage =
+    localStorage.getItem('preferredLanguage') || 'en';
+} catch (_) {
+  // Default to English.
+}
+
+updateLanguage(initialLanguage);
