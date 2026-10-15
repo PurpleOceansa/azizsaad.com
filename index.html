@@ -1,98 +1,370 @@
+
 <!doctype html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f7f6f2">
-  <meta name="description" content="The personal website of Abdulaziz Saad. A brief introduction and contact information.">
+  <meta name="description" content="Abdulaziz Saad — Business &amp; Technology. Digital transformation, project management, business development, strategic partnerships, and investment opportunities.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Abdulaziz Saad | Personal Website">
-  <meta property="og:description" content="A brief introduction and a way to get in touch with Abdulaziz Saad.">
+  <meta property="og:title" content="Abdulaziz Saad | Business &amp; Technology">
+  <meta property="og:description" content="Digital transformation and project management, with interests in business development, strategic partnerships, and investment opportunities.">
   <meta property="og:url" content="https://azizsaad.com/">
   <link rel="canonical" href="https://azizsaad.com/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
-  <title>Abdulaziz Saad | Personal Website</title>
+  <title>Abdulaziz Saad | Business &amp; Technology</title>
   <script src="script.js" defer></script>
+
+  <style>
+    /* Small additions; original styles.css remains unchanged. */
+
+    .linkedin-link {
+      margin-top: 1.5rem;
+    }
+
+    html[dir="rtl"] .hero-copy,
+    html[dir="rtl"] .section-body,
+    html[dir="rtl"] .section-index {
+      text-align: right;
+    }
+
+    html[dir="rtl"] .inline-arrow,
+    html[dir="rtl"] .linkedin-link svg,
+    html[dir="rtl"] .email-cta svg {
+      transform: scaleX(-1);
+    }
+
+    .hero h1,
+    .section-body h2 {
+      overflow-wrap: anywhere;
+    }
+  </style>
 </head>
+
 <body>
   <div class="page-shell">
+
     <header class="site-header">
-      <a class="brand" href="#home" aria-label="Azizsaad.com — home">
-        <span class="brand-mark" aria-hidden="true">as<span>.</span></span>
+      <a
+        class="brand"
+        href="#home"
+        aria-label="Azizsaad.com — home"
+        data-aria-key="brandHome"
+      >
+        <span class="brand-mark" aria-hidden="true">
+          as<span>.</span>
+        </span>
         <span class="brand-domain">azizsaad.com</span>
       </a>
+
       <div class="header-right">
-        <nav class="main-nav" aria-label="Primary navigation" data-aria-key="navigation">
+        <nav
+          class="main-nav"
+          aria-label="Primary navigation"
+          data-aria-key="navigation"
+        >
           <a href="#about" data-i18n="navAbout">About</a>
           <a href="#contact" data-i18n="navContact">Contact</a>
         </nav>
-        <div class="language-picker" role="group" aria-label="Language / اللغة">
-          <button type="button" data-language="en" class="language-button is-active" aria-pressed="true" lang="en">EN</button>
-          <span class="language-divider" aria-hidden="true"></span>
-          <button type="button" data-language="ar" class="language-button" aria-pressed="false" lang="ar">عربي</button>
+
+        <div
+          class="language-picker"
+          role="group"
+          aria-label="Language / اللغة"
+        >
+          <button
+            type="button"
+            data-language="en"
+            class="language-button is-active"
+            aria-pressed="true"
+            lang="en"
+          >EN</button>
+
+          <span
+            class="language-divider"
+            aria-hidden="true"
+          ></span>
+
+          <button
+            type="button"
+            data-language="ar"
+            class="language-button"
+            aria-pressed="false"
+            lang="ar"
+          >عربي</button>
         </div>
       </div>
     </header>
 
     <main id="home">
+
+      <!-- HERO -->
       <section class="hero" aria-labelledby="hero-name">
+
         <div class="hero-copy">
-          <div class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span><span data-i18n="eyebrow">PERSONAL WEBSITE</span></div>
-          <h1 id="hero-name" data-i18n="name">Abdulaziz<br>Saad<span class="period">.</span></h1>
-          <p class="hero-intro" data-i18n="heroIntro">A brief introduction and a simple way to stay in touch.</p>
+
+          <div class="eyebrow">
+            <span
+              class="eyebrow-line"
+              aria-hidden="true"
+            ></span>
+            <span data-i18n="eyebrow">
+              PERSONAL WEBSITE
+            </span>
+          </div>
+
+          <h1 id="hero-name">
+            <span data-i18n="firstName">Abdulaziz</span><br>
+            <span data-i18n="lastName">Saad</span><span class="period">.</span>
+          </h1>
+
+          <p
+            class="hero-intro"
+            data-i18n="heroIntro"
+          >Business &amp; Technology</p>
+
           <a href="#about" class="discover-link">
-            <span data-i18n="readMore">A little about me</span>
-            <svg class="inline-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 10h12m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span data-i18n="readMore">About me</span>
+            <svg
+              class="inline-arrow"
+              viewBox="0 0 20 20"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M3.5 10h12m-5-5 5 5-5 5"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
           </a>
+
         </div>
+
         <figure class="portrait-wrap">
           <div class="portrait-frame">
-            <img src="portrait.jpg" alt="Portrait placeholder for Abdulaziz Saad. Replace this image with a personal photograph." data-alt-key="portraitAlt" width="1200" height="1500">
+            <img
+              src="portrait.jpg"
+              alt="Portrait image"
+              data-alt-key="portraitAlt"
+              width="1200"
+              height="1500"
+            >
           </div>
-          <figcaption class="portrait-caption"><span data-i18n="portraitCaption">ABDULAZIZ SAAD</span><span class="caption-rule" aria-hidden="true"></span><span data-i18n="portraitSite">PERSONAL SITE</span></figcaption>
+
+          <figcaption class="portrait-caption">
+            <span data-i18n="portraitCaption">
+              ABDULAZIZ SAAD
+            </span>
+
+            <span
+              class="caption-rule"
+              aria-hidden="true"
+            ></span>
+
+            <span data-i18n="portraitSite">
+              PERSONAL SITE
+            </span>
+          </figcaption>
         </figure>
+
       </section>
 
-      <div class="section-divider" aria-hidden="true"></div>
+      <div
+        class="section-divider"
+        aria-hidden="true"
+      ></div>
 
-      <section class="content-section about-section" id="about" aria-labelledby="about-heading">
-        <div class="section-index"><span>01</span><span class="index-separator">/</span><span data-i18n="aboutLabel">ABOUT</span></div>
+      <!-- ABOUT -->
+      <section
+        class="content-section about-section"
+        id="about"
+        aria-labelledby="about-heading"
+      >
+
+        <div class="section-index">
+          <span>01</span>
+          <span class="index-separator">/</span>
+          <span data-i18n="aboutLabel">ABOUT</span>
+        </div>
+
         <div class="section-body">
-          <h2 id="about-heading" data-i18n="aboutHeading">A little about me<span class="gold-period">.</span></h2>
-          <p data-i18n="aboutText">My professional background is in digital transformation and project management. My interests also extend to business development, marketing analysis, and approaches that support sustainable growth.</p>
+
+          <h2 id="about-heading">
+            <span data-i18n="aboutHeading">
+              About me
+            </span><span class="gold-period">.</span>
+          </h2>
+
+          <p data-i18n="aboutText">My background is in digital transformation and project management, with broader interests in business development, strategic partnerships, and investment opportunities.</p>
+
         </div>
       </section>
 
-      <div class="section-divider" aria-hidden="true"></div>
+      <div
+        class="section-divider"
+        aria-hidden="true"
+      ></div>
 
-      <section class="content-section contact-section" id="contact" aria-labelledby="contact-heading">
-        <div class="section-index"><span>02</span><span class="index-separator">/</span><span data-i18n="contactLabel">CONTACT</span></div>
+      <!-- CONTACT -->
+      <section
+        class="content-section contact-section"
+        id="contact"
+        aria-labelledby="contact-heading"
+      >
+
+        <div class="section-index">
+          <span>02</span>
+          <span class="index-separator">/</span>
+          <span data-i18n="contactLabel">CONTACT</span>
+        </div>
+
         <div class="section-body">
-          <h2 id="contact-heading" data-i18n="contactHeading">Get in touch<span class="gold-period">.</span></h2>
-          <p data-i18n="contactText">For professional correspondence or general inquiries, you can reach me directly by email.</p>
+
+          <h2 id="contact-heading">
+            <span data-i18n="contactHeading">
+              Get in touch
+            </span><span class="gold-period">.</span>
+          </h2>
+
+          <p data-i18n="contactText">
+            For professional inquiries and opportunities:
+          </p>
+
           <div class="email-panel">
+
             <div class="email-details">
-              <span class="email-label" data-i18n="emailLabel">EMAIL ADDRESS</span>
-              <a href="mailto:a@azizsaad.com" class="email-address" dir="ltr">a@azizsaad.com</a>
+              <span
+                class="email-label"
+                data-i18n="emailLabel"
+              >EMAIL ADDRESS</span>
+
+              <a
+                href="mailto:a@azizsaad.com"
+                class="email-address"
+                dir="ltr"
+              >a@azizsaad.com</a>
             </div>
+
             <div class="email-actions">
-              <button class="copy-button" type="button" id="copy-email" title="Copy email address" data-title-key="copyEmail">
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="8" y="8" width="11" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+
+              <button
+                class="copy-button"
+                type="button"
+                id="copy-email"
+                title="Copy email address"
+                data-title-key="copyEmailTitle"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="8"
+                    y="8"
+                    width="11"
+                    height="12"
+                    rx="2"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h2"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
                 <span data-i18n="copyEmail">Copy</span>
               </button>
-              <a class="email-cta" href="mailto:a@azizsaad.com"><span data-i18n="sendEmail">Send email</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 10h12m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+
+              <a
+                class="email-cta"
+                href="mailto:a@azizsaad.com"
+              >
+                <span data-i18n="sendEmail">
+                  Send email
+                </span>
+
+                <svg
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3.5 10h12m-5-5 5 5-5 5"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
+
             </div>
           </div>
-          <p class="sr-only" id="copy-status" role="status" aria-live="polite"></p>
+
+          <!-- LINKEDIN -->
+          <a
+            class="discover-link linkedin-link"
+            href="https://www.linkedin.com/in/AazizSaad"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Abdulaziz Saad on LinkedIn (opens in a new tab)"
+            data-aria-key="linkedinAria"
+          >
+            <span data-i18n="linkedin">LinkedIn</span>
+
+            <svg
+              class="inline-arrow"
+              viewBox="0 0 20 20"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M3.5 10h12m-5-5 5 5-5 5"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+
+          <p
+            class="sr-only"
+            id="copy-status"
+            role="status"
+            aria-live="polite"
+          ></p>
+
         </div>
       </section>
+
     </main>
 
+    <!-- FOOTER -->
     <footer class="site-footer">
-      <span>© <span id="year">2026</span> <span data-i18n="footerName">Abdulaziz Saad</span></span>
-      <span data-i18n="footerText">Personal website · Azizsaad.com</span>
+      <span>
+        © <span id="year">2026</span>
+        <span data-i18n="footerName">
+          Abdulaziz Saad
+        </span>
+      </span>
+
+      <span>
+        <span data-i18n="footerTagline">
+          Business &amp; Technology
+        </span>
+        ·
+        <span dir="ltr">azizsaad.com</span>
+      </span>
     </footer>
+
   </div>
 </body>
 </html>
